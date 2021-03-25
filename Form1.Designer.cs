@@ -36,14 +36,14 @@ namespace Marotco_generator
             this.textBox_ZIP = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox_pas_maxL = new System.Windows.Forms.TextBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox_pas_maxL = new System.Windows.Forms.TextBox();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,46 +84,6 @@ namespace Marotco_generator
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip1.ToolTipTitle = "Подсказка";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 136);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 17);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Длина пароля:";
-            // 
-            // textBox_pas_maxL
-            // 
-            this.textBox_pas_maxL.Location = new System.Drawing.Point(125, 133);
-            this.textBox_pas_maxL.Name = "textBox_pas_maxL";
-            this.textBox_pas_maxL.Size = new System.Drawing.Size(32, 22);
-            this.textBox_pas_maxL.TabIndex = 9;
-            this.textBox_pas_maxL.Text = "16";
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.Location = new System.Drawing.Point(163, 124);
-            this.trackBar1.Maximum = 18;
-            this.trackBar1.Minimum = 12;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(104, 56);
-            this.trackBar1.TabIndex = 10;
-            this.trackBar1.Value = 14;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(345, 136);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(40, 17);
-            this.linkLabel1.TabIndex = 11;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Сайт";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // button4
             // 
@@ -172,6 +132,46 @@ namespace Marotco_generator
             this.toolTip1.SetToolTip(this.button1, "Сгенерировать файл");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 136);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 17);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Длина пароля:";
+            // 
+            // textBox_pas_maxL
+            // 
+            this.textBox_pas_maxL.Location = new System.Drawing.Point(125, 133);
+            this.textBox_pas_maxL.Name = "textBox_pas_maxL";
+            this.textBox_pas_maxL.Size = new System.Drawing.Size(32, 22);
+            this.textBox_pas_maxL.TabIndex = 9;
+            this.textBox_pas_maxL.Text = "16";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(163, 124);
+            this.trackBar1.Maximum = 18;
+            this.trackBar1.Minimum = 12;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(104, 56);
+            this.trackBar1.TabIndex = 10;
+            this.trackBar1.Value = 14;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(345, 136);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(40, 17);
+            this.linkLabel1.TabIndex = 11;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Сайт";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // Form1
             // 

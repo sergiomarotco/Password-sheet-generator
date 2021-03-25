@@ -1,13 +1,7 @@
 ﻿using PasswordGenerator;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Word;
 using System.IO;
@@ -111,7 +105,7 @@ namespace Marotco_generator
             }
             //открываем в word документ
             app = new Microsoft.Office.Interop.Word.Application();
-            File.WriteAllBytes("Template.docx", Properties.Resources.Template.ToArray());
+            //File.WriteAllBytes("Template.docx", Properties.Resources.Template.ToArray());
             doc = app.Documents.Open(Directory.GetCurrentDirectory().ToString() + @"\\Template.docx");
             int p = 0;
             char[] password=new char[0];
@@ -153,7 +147,7 @@ namespace Marotco_generator
                     break;
             }
             SaveCloseFile(true);//закрываем открытый в word документ
-            File.Delete(Directory.GetCurrentDirectory().ToString() + @"\\Template.docx");
+            //File.Delete(Directory.GetCurrentDirectory().ToString() + @"\\Template.docx");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -261,7 +255,5 @@ namespace Marotco_generator
         {
             Process.Start("https://github.com/sergiomarotco/");
         }
-
-
     }
 }
