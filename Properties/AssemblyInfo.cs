@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
 [assembly: AssemblyTitle("Marotco_generator")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("The program generates a password for the *.pfx container and a sheet for writing the password")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("sergiomarotco")]
 [assembly: AssemblyProduct("Marotco_generator")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
