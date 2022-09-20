@@ -1,32 +1,35 @@
-﻿using PasswordGenerator;
-using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Windows.Forms;
-using Microsoft.Office.Interop.Word;
-using System.IO;
-
-namespace Marotco_generator
+﻿namespace Marotco_generator
 {
+    using System;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Linq;
+    using System.Windows.Forms;
+    using Microsoft.Office.Interop.Word;
+    using PasswordGenerator;
+
+    /// <summary>
+    /// Основная форма.
+    /// </summary>
     public partial class Form1 : Form
     {
+        private Microsoft.Office.Interop.Word.Application app;
+        private Document doc;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Form1"/> class.
+        /// Основной класс.
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-        public Microsoft.Office.Interop.Word.Application app;
-        Document doc;
-        public static Object missing = Type.Missing;
         /// <summary>
-        /// Функция замены строк в word файле 
+        /// Функция замены строк в word файле.
         /// </summary>
-        /// <param name="str_old">Заменяемая страка</param>
-        /// <param name="str_new">Строка которой заменяют</param>
+        /// <param name="str_old">Заменяемая страка.</param>
+        /// <param name="str_new">Строка которой заменяют.</param>
         public void FindReplace(string str_old, string str_new)
         {
             object missingObject = null;
@@ -42,11 +45,24 @@ namespace Marotco_generator
             doc.GoTo(ref item, ref whichItem, ref missingObject, ref missingObject);
             foreach (Range rng in doc.StoryRanges)
             {
-                rng.Find.Execute(ref originalText, ref matchCase,
-                ref matchAllWord, ref missingObject, ref missingObject, ref missingObject, ref forward,
-                ref missingObject, ref missingObject, ref replaceText, ref replaceAll, ref missingObject,
-                ref missingObject, ref missingObject, ref missingObject);
+                rng.Find.Execute(
+                    ref originalText,
+                    ref matchCase,
+                    ref matchAllWord,
+                    ref missingObject,
+                    ref missingObject,
+                    ref missingObject,
+                    ref forward,
+                    ref missingObject,
+                    ref missingObject,
+                    ref replaceText,
+                    ref replaceAll,
+                    ref missingObject,
+                    ref missingObject,
+                    ref missingObject,
+                    ref missingObject);
             }
+
             /* Код работающий быстрее но не работающий с колонтитулами:
             Find find = app.Selection.Find;
 
@@ -73,10 +89,11 @@ namespace Marotco_generator
                 }
             }*/
         }
+
         /// <summary>
-        /// Сгенериратьлист с паролем
+        /// Сгенериратьлист с паролем.
         /// </summary>
-        /// <param name="type">true - пароль на контейнер, false - на zip архив</param>
+        /// <param name="type">true - пароль на контейнер, false - на zip архив.</param>
         public void FileGenerate(bool type)
         {
             switch (type)
@@ -86,16 +103,19 @@ namespace Marotco_generator
                     {
                         Gen_container_pass(true);
                     }
+
                     break;
                 case false:
                     if (textBox_ZIP.Text.Length == 0)
                     {
                         Gen_container_pass(false);
                     }
+
                     break;
                 default:
                     break;
-            }            
+            }
+
             MessageBox.Show("!После закрытия окна, все процессы winword.exe будут убиты без сохранения!");
             Stopwatch st = new Stopwatch();
             st.Start();
@@ -103,12 +123,14 @@ namespace Marotco_generator
             {
                 proc.Kill();
             }
-            //открываем в word документ
+
+            // открываем в word документ
             app = new Microsoft.Office.Interop.Word.Application();
-            //File.WriteAllBytes("Template.docx", Properties.Resources.Template.ToArray());
+
+            // File.WriteAllBytes("Template.docx", Properties.Resources.Template.ToArray());
             doc = app.Documents.Open(Directory.GetCurrentDirectory().ToString() + @"\\Template.docx");
             int p = 0;
-            char[] password=new char[0];
+            char[] password = new char[0];
             switch (type)
             {
                 case true:
@@ -125,100 +147,107 @@ namespace Marotco_generator
             {
                 if (i < trackBar1.Value)
                 {
-                    FindReplace("[" + i + "]", password[p].ToString());//выполняем в тексте документа замену текста
+                    FindReplace("[" + i + "]", password[p].ToString()); // выполняем в тексте документа замену текста
                     p++;
                 }
                 else
                 {
-                    FindReplace("[" + i + "]", "");//выполняем в тексте документа замену текста
+                    FindReplace("[" + i + "]", string.Empty); // выполняем в тексте документа замену текста
                 }
             }
+
             switch (type)
             {
                 case true:
-                    FindReplace("[от]", "КОНТЕЙНЕРА");//выполняем в тексте документа замену текста   
-                    Clipboard.SetData(DataFormats.Text, (Object)textBox_container.Text);    //копируем в буфер
+                    FindReplace("[от]", "КОНТЕЙНЕРА"); // выполняем в тексте документа замену текста
+                    Clipboard.SetData(DataFormats.Text, (object)textBox_container.Text); // копируем в буфер
                     break;
                 case false:
-                    FindReplace("[от]", "ZIP архива");//выполняем в тексте документа замену текста
-                    Clipboard.SetData(DataFormats.Text, (Object)textBox_ZIP.Text);    //копируем в буфер
+                    FindReplace("[от]", "ZIP архива"); // выполняем в тексте документа замену текста
+                    Clipboard.SetData(DataFormats.Text, (object)textBox_ZIP.Text); // копируем в буфер
                     break;
                 default:
                     break;
             }
-            SaveCloseFile(true);//закрываем открытый в word документ
-            //File.Delete(Directory.GetCurrentDirectory().ToString() + @"\\Template.docx");
+
+            SaveCloseFile(true); // закрываем открытый в word документ File.Delete(Directory.GetCurrentDirectory().ToString() + @"\\Template.docx");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             FileGenerate(true);
         }
-        private void button4_Click(object sender, EventArgs e)
+
+        private void Button4_Click(object sender, EventArgs e)
         {
             FileGenerate(false);
         }
+
         /// <summary>
-        /// Путь к файлу с паролем от контейнера
+        /// Путь к файлу с паролем от контейнера.
         /// </summary>
-        string file_container = "";
+        private string fileContainer = string.Empty;
+
         /// <summary>
-        /// Путь к файлу с паролем от ZIP архива
+        /// Путь к файлу с паролем от ZIP архива.
         /// </summary>
-        string file_container_ZIP = "";
+        private string fileContainerZIP = string.Empty;
+
         /// <summary>
-        /// Закрытие Word и открытие файла
+        /// Закрытие Word и открытие файла.
         /// </summary>
-        /// <param name="type">true - пароль на контейнер, false - на zip архив</param>
+        /// <param name="type">true - пароль на контейнер, false - на zip архив.</param>
         public void SaveCloseFile(bool type)
         {
             DateTime d = DateTime.Now;
-            string CD = Directory.GetCurrentDirectory().ToString();
+            string cD = Directory.GetCurrentDirectory().ToString();
             string time2 = d.Year.ToString() + "." + d.Month + "." + d.Day + " " + d.Hour + "-" + d.Minute;
             switch (type)
             {
                 case true:
-                    file_container = CD + @"\\" + time2 + " Пароль_на_контейнер.docx"; // новый файл на основе файла-шаблона
-                    app.ActiveDocument.SaveAs(file_container);
+                    fileContainer = cD + @"\\" + time2 + " Пароль_на_контейнер.docx"; // новый файл на основе файла-шаблона
+                    app.ActiveDocument.SaveAs(fileContainer);
                     app.ActiveDocument.Close();
                     app.Quit();
                     app = null;
-                    Process.Start(file_container);
+                    Process.Start(fileContainer);
                     break;
                 case false:
-                    file_container_ZIP = CD + @"\\" + time2 + " Пароль_на_архив.docx"; // новый файл на основе файла-шаблона;
-                    app.ActiveDocument.SaveAs(file_container_ZIP);
+                    fileContainerZIP = cD + @"\\" + time2 + " Пароль_на_архив.docx"; // новый файл на основе файла-шаблона;
+                    app.ActiveDocument.SaveAs(fileContainerZIP);
                     app.ActiveDocument.Close();
                     app.Quit();
                     app = null;
-                    Process.Start(file_container_ZIP);
+                    Process.Start(fileContainerZIP);
                     break;
                 default:
                     break;
             }
         }
+
         /// <summary>
-        /// Сгенерировать пароль и записать в textbox
+        /// Сгенерировать пароль и записать в textbox.
         /// </summary>
-        /// <param name="type">true - пароль на контейнер, false - на zip архив</param>
+        /// <param name="type">true - пароль на контейнер, false - на zip архив.</param>
         private void Gen_container_pass(bool type)
         {
-            var pwd = new Password(Convert.ToInt32(textBox_pas_maxL.Text)); //настраиваем генератор пароля
-            string result = pwd.Next();                             //генерируем пароль
-            result = result.Replace('i','*');//замена плохочитаемых символов
+            var pwd = new Password(Convert.ToInt32(textBox_pas_maxL.Text)); // настраиваем генератор пароля
+            string result = pwd.Next();                             // генерируем пароль
+            result = result.Replace('i', '*'); // замена плохочитаемых символов
             result = result.Replace('I', '?');
             result = result.Replace('L', '#');
             result = result.Replace('|', '(');
             result = result.Replace('o', '@');
             result = result.Replace('O', '!');
             char[] resault_char = result.ToArray();
-            for (int i = 4; i < resault_char.Length; i+=5)
+            for (int i = 4; i < resault_char.Length; i += 5)
             {
                 resault_char[i] = '-';
             }
+
             result = new string(resault_char);
-            switch (type)//записываем пароль
-            {
+            switch (type)
+            {// записываем пароль
                 case true:
                     textBox_container.Text = result;
                     break;
@@ -228,14 +257,16 @@ namespace Marotco_generator
                 default:
                     break;
             }
-            Clipboard.SetData(DataFormats.Text, (Object)result);    //копируем в буфер
+
+            Clipboard.SetData(DataFormats.Text, (object)result); // копируем в буфер
         }
-        private void button3_Click(object sender, EventArgs e)
+
+        private void Button3_Click(object sender, EventArgs e)
         {
             Gen_container_pass(true);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             Gen_container_pass(false);
         }
@@ -246,12 +277,12 @@ namespace Marotco_generator
             textBox_pas_maxL.Text = trackBar1.Value.ToString();
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void TrackBar1_Scroll(object sender, EventArgs e)
         {
             textBox_pas_maxL.Text = trackBar1.Value.ToString();
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/sergiomarotco/");
         }

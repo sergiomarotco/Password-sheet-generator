@@ -77,8 +77,7 @@ namespace Marotco_generator
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(269, 17);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Пароль на архив с контейнером ключа:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.Text = "Пароль на архив с контейнером ключа:";            
             // 
             // toolTip1
             // 
@@ -95,7 +94,7 @@ namespace Marotco_generator
             this.button4.TabIndex = 12;
             this.toolTip1.SetToolTip(this.button4, "Сгенерировать файл");
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // button2
             // 
@@ -107,7 +106,7 @@ namespace Marotco_generator
             this.button2.TabIndex = 7;
             this.toolTip1.SetToolTip(this.button2, "Сгенерировать пароль на архив");
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // button3
             // 
@@ -119,7 +118,7 @@ namespace Marotco_generator
             this.button3.TabIndex = 6;
             this.toolTip1.SetToolTip(this.button3, "Сгенерировать пароль на контейнер с ключом");
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // button1
             // 
@@ -131,7 +130,7 @@ namespace Marotco_generator
             this.button1.TabIndex = 0;
             this.toolTip1.SetToolTip(this.button1, "Сгенерировать файл");
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // label3
             // 
@@ -159,7 +158,7 @@ namespace Marotco_generator
             this.trackBar1.Size = new System.Drawing.Size(104, 56);
             this.trackBar1.TabIndex = 10;
             this.trackBar1.Value = 14;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.trackBar1.Scroll += new System.EventHandler(this.TrackBar1_Scroll);
             // 
             // linkLabel1
             // 
@@ -171,7 +170,7 @@ namespace Marotco_generator
             this.linkLabel1.TabIndex = 11;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Сайт";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // Form1
             // 
